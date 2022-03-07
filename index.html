@@ -36,6 +36,14 @@
             border-style: solid;
             padding: 4px;
         }
+
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
     </style>
 </head>
 
@@ -43,6 +51,8 @@
 <body>
     <h1 id="main-header">Accessing Elements in the DOM</h1>
 
+    <button onclick="toggleSelectedClassToDemoIdTag()">Select/deselect Demo ID Tag</button>
+    <button onclick="addClassToTagById('article-container', 'red')">Make articles red!</button>
     <div id="demo-id-container">
         <h2 id="demo-id">ID (#demo-id)</h2>
         <div>Access me by ID</div>
@@ -50,7 +60,7 @@
 
 
     <div>
-        <h2>Class(.demo-class)</h2>
+        <h2>Class(.demo-class) asdasdasd</h2>
         <div class="demo-class"> Access me by class (1)</div>
         <div class="demo-class">Access me by class (2)</div>
     </div>
@@ -70,7 +80,6 @@
         <div>Access me by query</div>
     </div>
 
-
     <div>
         <h2>Query Selector All</h2>
         <div class="demo-query-all">Access me by query all (1)</div>
@@ -87,6 +96,36 @@
         </ul>
     </div>
 
+    <script>
+        // Here you can write JavaScript code.
+        // When will it be executed?
+        // It will be executed whenever the browser encounters this tag
+        // and renders it - the browser renders the tags one by one
+        // from top to bottom.
+
+        // 1)
+        // We want to select the node with ID demo-id,
+        // and assign a new CSS class to it the "selected" class.
+
+        // Convention: you name the variables referencing DOM elements/tags
+        // with a name that ENDS WITH "Node" or "Tag"
+
+        function toggleSelectedClassToDemoIdTag() {
+            // 1A) Selecting the node. Always the first step!
+            let demoIdNode = document.getElementById("demo-id")
+
+            // 1B) Manipulate the node. Do something with it.
+            demoIdNode.classList.toggle("selected") // Google: how to add a class to an HTML in JS?
+        }
+
+
+        function addClassToTagById(idParam, classParam) {
+            // idParam will be a string
+            // classParam wiil be a string
+            let selectedTag = document.getElementById(idParam)
+            selectedTag.classList.add(classParam)
+        }
+    </script>
 </body>
 
 </html>
