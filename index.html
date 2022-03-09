@@ -61,8 +61,13 @@
     <br />
     <br />
 
-    <button id="add-new-article" onclick="addANewArticle('this is the TITLE!')">Add a new article</button>
 
+    <br />
+    <br />
+    <input type="text" id="text-input" placeholder="Enter some text here..." />
+    <button onclick="addANewArticle(event)">Add a new article</button>
+    <br />
+    <hr />
     <div id="demo-id-container">
         <h2 id="demo-id">ID (#demo-id)</h2>
         <div>Access me by ID</div>
@@ -164,8 +169,8 @@
         // 1a) We need to create a new button
 
         // 1b) We define a function to attach to the button
-        function addANewArticle(content) {
-            // content: string.
+        function addANewArticle(eventData) {
+            let content = document.getElementById('text-input').value
 
             // Inside the function:
             // 2) Select the article-container tag by ID, and save it in a variable
@@ -181,13 +186,19 @@
             // and backticks allow you also to write multiline string.
             // This is the same as writing "\nNew Article: " + content + ".\n"
 
+            // Since this tag does not exist in the HTML Code
+            // If we want to add a listener to it we can do it as follows
+            newArticle.onclick = setAllH2Red
+            // newArticle.addEventListener("click", setAllH2Red) -- ANOTHER WAY TO DO IT
+
             // 5) Append the tag as last child of the article container
             articleContainerTag.appendChild(newArticle)
 
             // 6) Hide the button tag.
-            // 6.1) Select the button tag we want to hide
+            // 6.1) Select the button tag we want to hide (we use target from the click data)
             // 6.2) Toggle/add the .hidden class to it
-            document.getElementById('add-new-article').classList.add("hidden")
+            eventData.target.classList.add("hidden")
+
             // A long as the code is readable, you can also do everything in one line
             // without defining intermediate variables
         }
