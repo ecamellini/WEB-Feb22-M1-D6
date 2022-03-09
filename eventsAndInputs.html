@@ -54,6 +54,7 @@
             // alert("Welcome!!")
             let circle = document.querySelector('.circle')
             circle.style.marginTop = '10px'
+            circle.style.marginLeft = '10px'
 
             // Now this code works the same no matter where we put
             // the <script> tag in our HTML.
@@ -73,9 +74,21 @@
 
             let circle = document.querySelector('.circle')
 
-            if (keyPressed === 'ArrowDown') {
-                let currentMarginTop = parseInt(circle.style.marginTop)
-                circle.style.marginTop = `${currentMarginTop + 10}px`
+            switch (keyPressed) {
+                case 'ArrowUp':
+                    circle.style.marginTop = parseInt(circle.style.marginTop) - 10 + 'px'
+                    break
+                case 'ArrowDown':
+                    circle.style.marginTop = parseInt(circle.style.marginTop) + 10 + 'px'
+                    break
+                case 'ArrowLeft':
+                    circle.style.marginLeft = parseInt(circle.style.marginLeft) - 10 + 'px'
+                    break
+                case 'ArrowRight':
+                    circle.style.marginLeft = parseInt(circle.style.marginLeft) + 10 + 'px'
+                    break
+                default:
+                    break
             }
         }
 
