@@ -53,6 +53,7 @@
 
     <button onclick="toggleSelectedClassToDemoIdTag()">Select/deselect Demo ID Tag</button>
     <button onclick="addClassToTagById('article-container', 'red')">Make articles red!</button>
+    <button onclick="setAllH2Red()">Make all H2 red 🎈</button>
     <div id="demo-id-container">
         <h2 id="demo-id">ID (#demo-id)</h2>
         <div>Access me by ID</div>
@@ -96,6 +97,9 @@
         </ul>
     </div>
 
+    <h2>A NEW SECTION</h2>
+    <p>This is a new section I just added</p>
+
     <script>
         // Here you can write JavaScript code.
         // When will it be executed?
@@ -125,6 +129,26 @@
             let selectedTag = document.getElementById(idParam)
             selectedTag.classList.add(classParam)
         }
+
+        function setAllH2Red() {
+            // 1) Select all h2 tags (we can use getElementsByTagName or querySelectorAll)
+            // 2) Save these tags somewhere
+            //      Note: this will be an array of objects, of nodes
+            //      [ node1, node2, .... ]
+            let h2Tags = document.getElementsByTagName('h2')
+
+            // 3) We run classList.toggle on ALL these tags
+            //      Note: being an array, we will need to loop through it
+            for (let i = 0; i < h2Tags.length; i++) {
+                h2Tags[i].classList.toggle("red")
+            }
+
+            // ANOTHER WAY TO WRITE THE SAME THING
+            // for (let h2Tag of h2Tags) {
+            //     h2Tag.classList.toggle("red")
+            // }
+        }
+
     </script>
 </body>
 
