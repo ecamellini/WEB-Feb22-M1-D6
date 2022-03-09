@@ -1,0 +1,94 @@
+<html>
+
+<head>
+
+    <style>
+        html {
+            font-family: sans-serif;
+            color: #333;
+        }
+
+        body {
+            max-width: 500px;
+            margin: 0 auto;
+            margin-top: 20px;
+            padding: 0 15px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .input-text {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Events & Inputs</h1>
+    <input class="input-text" type="text" onkeydown="logKeyPressed(event)"
+        placeholder="While typing here press arrow down key..." />
+
+    <div class="red circle" onmouseover="toggleBlueBackground(event)" onmouseleave="toggleBlueBackground(event)"></div>
+    <script>
+        // THIS SHOULD NEVER HAPPEN
+        // YOU SHOULD NEVER WRITE CODE HERE OUTSIDE FUNCTIONS
+        // alert("Hello")
+
+        // There is a better way to run some code as soon as the page finished loading
+        function onLoadStuff() {
+            // Everything that shall happen right after loading the page
+            // alert("Welcome!!")
+            let circle = document.querySelector('.circle')
+            circle.style.marginTop = '10px'
+
+            // Now this code works the same no matter where we put
+            // the <script> tag in our HTML.
+            // Because it will always wait for the page to finish loading/rendering
+        }
+        window.onload = onLoadStuff
+
+
+        function logKeyPressed(e) {
+            // In order to get the key that the user pressed
+            // We need to get information about the event.
+
+            // We can use the event object.
+            let keyPressed = e.key
+
+            console.log(keyPressed)
+
+            let circle = document.querySelector('.circle')
+
+            if (keyPressed === 'ArrowDown') {
+                let currentMarginTop = parseInt(circle.style.marginTop)
+                circle.style.marginTop = `${currentMarginTop + 10}px`
+            }
+        }
+
+        // Let's make the circle blue when we hover the mouse on it.
+        // And red again when we leave from it with the mouse.
+        function toggleBlueBackground(e) {
+            // 1) Select the element
+            let circleNode = e.target
+
+            // 2) Add a class to it
+            circleNode.classList.toggle("blue")
+        }
+    </script>
+</body>
+
+</html>
