@@ -44,6 +44,10 @@
         .blue {
             color: blue;
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -54,6 +58,11 @@
     <button onclick="toggleSelectedClassToDemoIdTag()">Select/deselect Demo ID Tag</button>
     <button onclick="addClassToTagById('article-container', 'red')">Make articles red!</button>
     <button onclick="setAllH2Red()">Make all H2 red 🎈</button>
+    <br />
+    <br />
+
+    <button id="add-new-article" onclick="addANewArticle('this is the TITLE!')">Add a new article</button>
+
     <div id="demo-id-container">
         <h2 id="demo-id">ID (#demo-id)</h2>
         <div>Access me by ID</div>
@@ -147,6 +156,40 @@
             // for (let h2Tag of h2Tags) {
             //     h2Tag.classList.toggle("red")
             // }
+        }
+
+        // New button that, on click, will add an article into the #article-container div.
+        // After adding the article, the button will disappear.
+
+        // 1a) We need to create a new button
+
+        // 1b) We define a function to attach to the button
+        function addANewArticle(content) {
+            // content: string.
+
+            // Inside the function:
+            // 2) Select the article-container tag by ID, and save it in a variable
+            let articleContainerTag = document.getElementById("article-container")
+
+            // 3) We create the new article tag/div using document.createElement
+            let newArticle = document.createElement('article')
+
+            // 4) We manipulate it/customize it by adding some text into it
+            newArticle.innerText = `
+                New article: ${content}.
+            ` // This notation works only with the backicks,
+            // and backticks allow you also to write multiline string.
+            // This is the same as writing "\nNew Article: " + content + ".\n"
+
+            // 5) Append the tag as last child of the article container
+            articleContainerTag.appendChild(newArticle)
+
+            // 6) Hide the button tag.
+            // 6.1) Select the button tag we want to hide
+            // 6.2) Toggle/add the .hidden class to it
+            document.getElementById('add-new-article').classList.add("hidden")
+            // A long as the code is readable, you can also do everything in one line
+            // without defining intermediate variables
         }
 
     </script>
